@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Films</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+    <h2 class = "title">Список фильмов</h2>
+    <form action="create/">
+                    <button class = "btn">Добавление фильма</button>
+    </form>
+    <table>
+        <thead><th>Название</th><th>Дата выпуска</th><th>Актеры</th><th>Дата показа</th><th>Категория</th><th class = "delete"></th></thead>
+        {% for film in films %}
+        <tr>
+            <td>{{ film.title }}</td>
+            <td>{{ film.date }}</td>
+            <td>{{ film.actors }}</td>
+            <td>{{ film.dateView }}</td>
+            <td>{{ film.genre }}</td>
+            <td>
+                <div class = "form-line">
+                    <form action="edit/{{ film.id }}">
+                    <button class = "btn">Изменить</button> 
+                    </form>
+                    |
+                    <form action="delete/{{ film.id }}">
+                        <button class = "btn">Удалить</button> 
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'login' %}" class = label>Login</a>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+    <h2>Изменение фильмов</h2>
+    <form method = "post">
+        {% csrf_token %}
+        <p>
+            <label class = "label" for="">Введите название фильма</label>
+            <input class = "inputs" type="text" name = "title" value = {{ films.title }}>
+        </p>
+        <p>
+            <label class = "label" for="">Введите дату</label>
+            <input class = "inputs" type="date" name = "date"  value = {{ films.date }} required = True/>
+        </p>
+        <p>
+            <label class = "label" for="">Введите актеров</label>
+            <textarea class = "inputs" type="text" name = "actors">{{ films.actors }}</textarea>
+        </p>
+        <p>
+            <label class = "label" for="">Введите дату показа</label>
+            <input class = "inputs" type="date" name = "dateView" {{ films.dateView }} required = True/>
+        </p>
+        <p>
+            <label class = "label" for="">Введите категорию</label>
+            <select  class = "inputs" name="category">
+            {% for cat in categori %}
+                <option value = "{{ cat.id }}">{{ cat.title }}</option>
+            {% endfor %}
+            </select>
+        </p>
+        <form>
+            <button class = "btn">Сохранить</button> 
+        </form>
+    </form>
+</body>
+</html>
